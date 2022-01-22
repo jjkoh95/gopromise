@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
-	sleep1Promise := gopromise.NewPromise(func(resolve func(interface{}), reject func(error)) {
-		time.Sleep(1 * time.Second)
-		resolve("done waiting 1 second")
+	sleep3Promise := gopromise.NewPromise(func(resolve func(interface{}), reject func(error)) {
+		time.Sleep(3 * time.Second)
+		resolve("done waiting 3 seconds")
 	})
-	log.Println("start sleep1")
+	log.Println("start sleep3")
 
 	sleep10Promise := gopromise.NewPromise(func(resolve func(interface{}), reject func(error)) {
 		time.Sleep(10 * time.Second)
@@ -20,15 +20,15 @@ func main() {
 	})
 	log.Println("start sleep10")
 
-	sleep1Res := gopromise.Await(sleep1Promise)
-	log.Println("sleep1Res", sleep1Res)
+	sleep3Res := gopromise.Await(sleep3Promise)
+	log.Println("sleep3Res", sleep3Res)
 
 	sleep10Res := gopromise.Await(sleep10Promise)
 	log.Println("sleep10Res", sleep10Res)
 
 	// output
-	// 2022/01/22 18:26:23 start sleep1
-	// 2022/01/22 18:26:23 start sleep10
-	// 2022/01/22 18:26:24 sleep1Res {done waiting 1 second <nil>}
-	// 2022/01/22 18:26:33 sleep10Res {done waiting 10 seconds <nil>}
+	// 2022/01/22 18:35:32 start sleep3
+	// 2022/01/22 18:35:32 start sleep10
+	// 2022/01/22 18:35:35 sleep3Res {done waiting 3 second <nil>}
+	// 2022/01/22 18:35:42 sleep10Res {done waiting 10 seconds <nil>}
 }
